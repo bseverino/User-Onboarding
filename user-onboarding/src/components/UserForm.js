@@ -11,22 +11,30 @@ const UserForm = ({ values, errors, touched, status }) => {
     }, [status]);
 
     return (
-        <Form>
-            <Field type="text" name="name" placeholder="Name" />
-            {touched.name && errors.name && (<p>{errors.name}</p>)}
-
-            <Field type="text" name="email" placeholder="Email" />
-            {touched.email && errors.email && (<p>{errors.email}</p>)}
-
-            <Field type="password" name="password" placeholder="Password" />
-            {touched.password && errors.password && (<p>{errors.password}</p>)}
-
-            <label>
-                <p>Check to accept the Terms of Service</p>
-                <Field type="checkbox" name="tos" checked={values.tos} />
-            </label>
-            <button type="submit">Submit</button>
-        </Form>
+        <div>
+            <Form>
+                <Field type="text" name="name" placeholder="Name" />
+                {touched.name && errors.name && (<p>{errors.name}</p>)}
+    
+                <Field type="text" name="email" placeholder="Email" />
+                {touched.email && errors.email && (<p>{errors.email}</p>)}
+    
+                <Field type="password" name="password" placeholder="Password" />
+                {touched.password && errors.password && (<p>{errors.password}</p>)}
+    
+                <label>
+                    <p>Check to accept the Terms of Service</p>
+                    <Field type="checkbox" name="tos" checked={values.tos} />
+                </label>
+                <button type="submit">Submit</button>
+            </Form>
+            {userInfo.map(user => (
+                <ul key={user.id}>
+                    <li>Name: {user.name}</li>
+                    <li>Email: {user.email}</li>
+                </ul>
+            ))}
+        </div>
     );
 };
 
