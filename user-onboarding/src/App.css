@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&display=swap');
+
+* {
+  max-width: 100%; 
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-  max-width: 100%;
+  background-image: url('./img/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .App {
@@ -8,10 +20,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #FFF;
+  width: 60%;
+  margin: 100px auto;
+  border-radius: 5px;
 }
 
 p {
   color: #DB7093;
+  font-size: 1.6rem;
 }
 
 .form-container {
@@ -34,6 +51,7 @@ form {
   border-radius: 3px;
   background: #DB7093;
   color: #FFF;
+  font-size: 1.6rem;
 }
 
 .option-input {
@@ -44,6 +62,11 @@ form {
   border-radius: 3px;
   background: #DB7093;
   color: #FFF;
+  font-size: 1.6rem;
+}
+
+option {
+  font-size: 1.6rem;
 }
 
 ::placeholder {
@@ -66,8 +89,9 @@ button {
   border-radius: 3px;
   padding: 5px;
   background: #FFB6C1;
-  color: #C71585;
+  color: #DB7093;
   font-weight: bold;
+  font-size: 1.6rem;
 }
 
 .user-list {
@@ -79,10 +103,11 @@ button {
 }
 
 .user-card {
-  width: 800px;
+  width: 100%;
   display: flex;
+  justify-content: center;
   background: #DB7093;
-  padding: 10px 20px;
+  padding: 10px 0 10px 20px;
   margin-bottom: 20px;
   border-radius: 5px;
 }
@@ -92,4 +117,5 @@ button {
   padding: 5px 10px;
   border-radius: 3px;
   background: #FFF;
+  font-size: 2rem;
 }
