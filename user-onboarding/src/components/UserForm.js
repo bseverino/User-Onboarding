@@ -3,6 +3,9 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import UserEntry from './UserEntry';
+
+
 const UserForm = ({ values, errors, touched, status }) => {
     const [userInfo, setUserInfo] = useState([]);
 
@@ -11,46 +14,62 @@ const UserForm = ({ values, errors, touched, status }) => {
     }, [status]);
 
     return (
-        <div>
+        <div className='form-container'>
             <Form>
-                <Field type="text" name="name" placeholder="Name" />
-                {touched.name && errors.name && (<p>{errors.name}</p>)}
+                <Field type='text' className='text-input' name='name' placeholder='Name' />
+                {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
     
-                <Field type="text" name="email" placeholder="Email" />
-                {touched.email && errors.email && (<p>{errors.email}</p>)}
+                <Field type='text' className='text-input' name='email' placeholder='Email' />
+                {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
     
-                <Field type="password" name="password" placeholder="Password" />
-                {touched.password && errors.password && (<p>{errors.password}</p>)}
+                <Field type='password' className='text-input' name='password' placeholder='Password' />
+                {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
     
-                <label>
+                <Field as='select' className='option-input' name='role'>
+                    <option value=''>Role</option>
+                    <option value='UI Developer'>UI Developer</option>
+                    <option value='UX Designer'>UX Designer</option>
+                    <option value='Front End Engineer'>Front End Engineer</option>
+                    <option value='Back End Engineer'>Back End Engineer</option>
+                    <option value='Data Scientist'>Data Scientist</option>
+                </Field>
+                {touched.role && errors.role && (<p className='error'>{errors.role}</p>)}
+
+                <label>                    
+                    <Field type='checkbox' name='tos' checked={values.tos} />
                     <p>Check to accept the Terms of Service</p>
-                    <Field type="checkbox" name="tos" checked={values.tos} />
                 </label>
-                <button type="submit">Submit</button>
+
+                <button type='submit'>Submit</button>
             </Form>
-            {userInfo.map(user => (
-                <ul key={user.id}>
-                    <li>Name: {user.name}</li>
-                    <li>Email: {user.email}</li>
-                </ul>
-            ))}
+            <UserEntry userInfo={userInfo} />
         </div>
     );
 };
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({ name, email, password, tos }){
+    mapPropsToValues({ name, email, password, role, tos }){
         return{
             name: name || '',
             email: email || '',
             password: password || '',
+            role: role || '',
             tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({
-        name: Yup.string().required('Name is required'),
-        email: Yup.string().required('Email is required'),
-        password: Yup.string().required('Password is required')
+        name: Yup.string()
+            .min(2, 'Name is too short')
+            .max(30, 'Name is too long')
+            .required('Name is required'),
+        email: Yup.string()
+            .email('Invalid email')
+            .required('Email is required'),
+        password: Yup.string()
+            .min(2, 'Password is too short')
+            .required('Password is required'),
+        role: Yup.string()
+            .required('Role is required')
     }),
     handleSubmit(values, { setStatus, resetForm }){
         axios
@@ -63,4 +82,5 @@ const FormikUserForm = withFormik({
             .finally(resetForm())
     }
 })(UserForm);
+
 export default FormikUserForm;
