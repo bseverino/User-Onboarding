@@ -5,13 +5,17 @@ import axios from 'axios';
 
 import UserEntry from './UserEntry';
 
-
 const UserForm = ({ values, errors, touched, status }) => {
     const [userInfo, setUserInfo] = useState([]);
+    const [activeTab, setActiveTab] = useState('1');
 
     useEffect(() => {
-        status && setUserInfo(userInfo => [...userInfo, status])
+        status && setUserInfo(userInfo => [...userInfo, status]);
     }, [status]);
+
+    const toggle = tab => {
+        if (activeTab !== tab) setActiveTab(tab);
+    }
 
     return (
         <div className='form-container'>
@@ -25,7 +29,7 @@ const UserForm = ({ values, errors, touched, status }) => {
                 <Field type='password' className='text-input' name='password' placeholder='Password' />
                 {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
     
-                <Field as='select' className='option-input' name='role'>
+                <Field as='select' className='text-input' name='role'>
                     <option value=''>Role</option>
                     <option value='UI Developer'>UI Developer</option>
                     <option value='UX Designer'>UX Designer</option>
@@ -42,7 +46,7 @@ const UserForm = ({ values, errors, touched, status }) => {
 
                 <button type='submit'>Submit</button>
             </Form>
-            <UserEntry userInfo={userInfo} />
+            <UserEntry userInfo={userInfo} activeTab={activeTab} toggle={toggle} />       
         </div>
     );
 };

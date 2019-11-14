@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&display=swap');
 
 * {
-  max-width: 100%; 
-  font-size: 62.5%;
+  max-width: 100%;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -28,7 +27,6 @@ body {
 
 p {
   color: #DB7093;
-  font-size: 1.6rem;
 }
 
 .form-container {
@@ -51,22 +49,6 @@ form {
   border-radius: 3px;
   background: #DB7093;
   color: #FFF;
-  font-size: 1.6rem;
-}
-
-.option-input {
-  width: 320px;
-  padding: 10px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 3px;
-  background: #DB7093;
-  color: #FFF;
-  font-size: 1.6rem;
-}
-
-option {
-  font-size: 1.6rem;
 }
 
 ::placeholder {
@@ -80,7 +62,11 @@ option {
 
 label {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+  width: 300px;
 }
 
 button {
@@ -91,31 +77,28 @@ button {
   background: #FFB6C1;
   color: #DB7093;
   font-weight: bold;
-  font-size: 1.6rem;
 }
 
 .user-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 50px;
 }
 
-.user-card {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: #DB7093;
-  padding: 10px 0 10px 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
+.nav-link {
+  cursor: pointer;
+  color: #DB7093 !important;
 }
 
-.user-card p {
-  margin-right: 20px;
-  padding: 5px 10px;
-  border-radius: 3px;
-  background: #FFF;
-  font-size: 2rem;
+.nav-link.active {
+  background: #DB7093 !important;
+  color: #FFF !important;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #DB7093;
+  font-family: 'Roboto Slab', serif;
+}
+
+ul, li {
+  color: #DB7093;
 }
