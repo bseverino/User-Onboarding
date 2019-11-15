@@ -43,8 +43,9 @@ const UserForm = ({ values, errors, touched, status }) => {
                     <Field type='checkbox' name='tos' checked={values.tos} />
                     <p>Check to accept the Terms of Service</p>
                 </label>
+                {touched.tos && errors.tos && (<p className='error-tos'>{errors.tos}</p>)}
 
-                <button type='submit'>Submit</button>
+                <button type='submit' value='submit'>Submit</button>                
             </Form>
             <UserEntry userInfo={userInfo} activeTab={activeTab} toggle={toggle} />       
         </div>
@@ -73,7 +74,9 @@ const FormikUserForm = withFormik({
             .min(2, 'Password is too short')
             .required('Password is required'),
         role: Yup.string()
-            .required('Role is required')
+            .required('Role is required'),
+        tos: Yup.boolean()
+            .oneOf([true], 'You must accept the Terms of Service')
     }),
     handleSubmit(values, { setStatus, resetForm }){
         axios

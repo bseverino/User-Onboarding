@@ -66,6 +66,11 @@ form {
   color: #C71585;
 }
 
+.error-tos {
+  margin: -20px 0 10px;
+  color: #C71585;
+}
+
 label {
   display: flex;
   flex-direction: row;
